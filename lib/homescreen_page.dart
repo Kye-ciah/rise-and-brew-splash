@@ -163,7 +163,6 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                         ],
                       ),
                     ),
-                    // Bottom navigation
                     Container(
                       width: 396,
                       height: 83,

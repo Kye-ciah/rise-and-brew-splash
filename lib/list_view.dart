@@ -1,8 +1,62 @@
 import 'package:flutter/material.dart';
 
-// Main ListView Component
-class ListViewWidget extends StatelessWidget {
+// ======================== MAIN LIST VIEW ========================
+class ListViewWidget extends StatefulWidget {
   const ListViewWidget({super.key});
+
+  @override
+  State<ListViewWidget> createState() => _ListViewWidgetState();
+}
+
+class _ListViewWidgetState extends State<ListViewWidget> {
+  // ---- Change this list to test empty state ----
+  List<FieldSummary> fieldSummaries = [
+    const FieldSummary(
+      id: 1,
+      fieldName: 'Field 3 - North Side',
+      date: 'October 20, 2025',
+      time: '10:00 AM',
+      soilMoisture: '4.2 % SOM',
+      phLevel: 'Neutral PH level',
+      status: FieldStatus.good,
+    ),
+    const FieldSummary(
+      id: 2,
+      fieldName: 'Field 3 - North Side',
+      date: 'October 20, 2025',
+      time: '10:00 AM',
+      soilMoisture: '4.2 % SOM',
+      phLevel: 'Neutral PH level',
+      status: FieldStatus.good,
+    ),
+    const FieldSummary(
+      id: 3,
+      fieldName: 'Field 3 - North Side',
+      date: 'October 20, 2025',
+      time: '10:00 AM',
+      soilMoisture: '4.2 % SOM',
+      phLevel: 'Neutral PH level',
+      status: FieldStatus.good,
+    ),
+    const FieldSummary(
+      id: 4,
+      fieldName: 'Field 3 - North Side',
+      date: 'October 20, 2025',
+      time: '10:00 AM',
+      soilMoisture: '4.2 % SOM',
+      phLevel: 'Neutral PH level',
+      status: FieldStatus.good,
+    ),
+    const FieldSummary(
+      id: 5,
+      fieldName: 'Field 3 - North Side',
+      date: 'October 20, 2025',
+      time: '10:00 AM',
+      soilMoisture: '4.2 % SOM',
+      phLevel: 'Neutral PH level',
+      status: FieldStatus.good,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +65,12 @@ class ListViewWidget extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Top status bar
             const TopStatusBar(),
             const SizedBox(height: 16),
-
-            // Add Field Button
             const AddFieldButton(),
             const SizedBox(height: 16),
-
-            // Field Summary List Section
-            const FieldSummaryListSection(),
-
-            // Bottom Navigation
+            // Pass the list to the section widget
+            FieldSummaryListSection(fieldSummaries: fieldSummaries),
             const BottomNavigationSection(),
           ],
         ),
@@ -31,7 +79,7 @@ class ListViewWidget extends StatelessWidget {
   }
 }
 
-// Top Status Bar Component (Simplified - no images)
+// ======================== TOP STATUS BAR ========================
 class TopStatusBar extends StatelessWidget {
   const TopStatusBar({super.key});
 
@@ -48,7 +96,7 @@ class TopStatusBar extends StatelessWidget {
   }
 }
 
-// Add Field Button Component
+// ======================== ADD FIELD BUTTON ========================
 class AddFieldButton extends StatelessWidget {
   const AddFieldButton({super.key});
 
@@ -69,17 +117,12 @@ class AddFieldButton extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Plus icon as an Icon instead of image asset
-          const Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 16,
-          ),
-          const SizedBox(width: 8),
-          const Text(
+          Icon(Icons.add, color: Colors.white, size: 16),
+          SizedBox(width: 8),
+          Text(
             'Add Field',
             style: TextStyle(
               fontSize: 14,
@@ -93,7 +136,7 @@ class AddFieldButton extends StatelessWidget {
   }
 }
 
-// Field Summary Model
+// ======================== MODELS & ENUMS ========================
 class FieldSummary {
   final int id;
   final String fieldName;
@@ -114,11 +157,7 @@ class FieldSummary {
   });
 }
 
-enum FieldStatus {
-  good,
-  bad,
-  neutral,
-}
+enum FieldStatus { good, bad, neutral }
 
 extension FieldStatusExtension on FieldStatus {
   String get displayName {
@@ -133,58 +172,11 @@ extension FieldStatusExtension on FieldStatus {
   }
 }
 
-// Field Summary List Section
+// ======================== FIELD SUMMARY LIST SECTION (with empty state) ========================
 class FieldSummaryListSection extends StatelessWidget {
-  const FieldSummaryListSection({super.key});
+  final List<FieldSummary> fieldSummaries;
 
-  // Sample data
-  static const List<FieldSummary> fieldSummariesData = [
-    FieldSummary(
-      id: 1,
-      fieldName: 'Field 3 - North Side',
-      date: 'October 20, 2025',
-      time: '10:00 AM',
-      soilMoisture: '4.2 % SOM',
-      phLevel: 'Neutral PH level',
-      status: FieldStatus.good,
-    ),
-    FieldSummary(
-      id: 2,
-      fieldName: 'Field 3 - North Side',
-      date: 'October 20, 2025',
-      time: '10:00 AM',
-      soilMoisture: '4.2 % SOM',
-      phLevel: 'Neutral PH level',
-      status: FieldStatus.good,
-    ),
-    FieldSummary(
-      id: 3,
-      fieldName: 'Field 3 - North Side',
-      date: 'October 20, 2025',
-      time: '10:00 AM',
-      soilMoisture: '4.2 % SOM',
-      phLevel: 'Neutral PH level',
-      status: FieldStatus.good,
-    ),
-    FieldSummary(
-      id: 4,
-      fieldName: 'Field 3 - North Side',
-      date: 'October 20, 2025',
-      time: '10:00 AM',
-      soilMoisture: '4.2 % SOM',
-      phLevel: 'Neutral PH level',
-      status: FieldStatus.good,
-    ),
-    FieldSummary(
-      id: 5,
-      fieldName: 'Field 3 - North Side',
-      date: 'October 20, 2025',
-      time: '10:00 AM',
-      soilMoisture: '4.2 % SOM',
-      phLevel: 'Neutral PH level',
-      status: FieldStatus.good,
-    ),
-  ];
+  const FieldSummaryListSection({super.key, required this.fieldSummaries});
 
   static const List<FieldStatus> statusOptions = [
     FieldStatus.good,
@@ -194,24 +186,58 @@ class FieldSummaryListSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // If the list is empty, show the empty state
+    if (fieldSummaries.isEmpty) {
+      return Expanded(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.inbox_outlined,
+                size: 80,
+                color: Colors.grey.shade400,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'No fields added yet',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey.shade600,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Tap "Add Field" to get started',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey.shade500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Otherwise show the list of cards
     return Expanded(
       child: Container(
         width: 396,
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
+        decoration: const BoxDecoration(color: Colors.transparent),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                for (int index = 0; index < fieldSummariesData.length; index++)
+                for (int index = 0; index < fieldSummaries.length; index++)
                   Padding(
                     padding: EdgeInsets.only(
-                      bottom: index == fieldSummariesData.length - 1 ? 0 : 8,
+                      bottom: index == fieldSummaries.length - 1 ? 0 : 8,
                     ),
                     child: _FieldSummaryCard(
-                      summary: fieldSummariesData[index],
+                      summary: fieldSummaries[index],
                     ),
                   ),
               ],
@@ -223,7 +249,7 @@ class FieldSummaryListSection extends StatelessWidget {
   }
 }
 
-// Field Summary Card Component
+// ======================== INDIVIDUAL FIELD CARD ========================
 class _FieldSummaryCard extends StatelessWidget {
   final FieldSummary summary;
 
@@ -242,7 +268,7 @@ class _FieldSummaryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header row with field name and date
+          // Header row: field name + date
           Row(
             children: [
               Expanded(
@@ -276,7 +302,7 @@ class _FieldSummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          // Description (Soil Moisture and PH Level)
+          // Description (Soil Moisture + PH)
           Text(
             '${summary.soilMoisture}\n${summary.phLevel}',
             style: const TextStyle(
@@ -289,7 +315,7 @@ class _FieldSummaryCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 12),
-          // Status buttons and Edit Info button
+          // Status buttons + Edit Info button
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -347,7 +373,7 @@ class _FieldSummaryCard extends StatelessWidget {
   }
 }
 
-// Bottom Navigation Section
+// ======================== BOTTOM NAVIGATION ========================
 class BottomNavigationSection extends StatelessWidget {
   const BottomNavigationSection({super.key});
 
@@ -360,21 +386,18 @@ class BottomNavigationSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Home Tab
           _BottomNavItem(
             label: 'Home',
             icon: Icons.home_outlined,
             isActive: true,
             onTap: () {},
           ),
-          // Camera Tab
           _BottomNavItem(
             label: 'Cam',
             icon: Icons.camera_alt_outlined,
             isActive: false,
             onTap: () {},
           ),
-          // List Tab
           _BottomNavItem(
             label: 'List',
             icon: Icons.book_outlined,
@@ -387,7 +410,6 @@ class BottomNavigationSection extends StatelessWidget {
   }
 }
 
-// Bottom Navigation Item Component
 class _BottomNavItem extends StatelessWidget {
   final String label;
   final IconData icon;

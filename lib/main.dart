@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'list_view.dart';  // Import your list_view
+import 'homescreen_page.dart'; // Import your home screen
 
 void main() => runApp(const MyApp());
 
@@ -90,10 +90,10 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed && mounted) {
-        // Navigate to ListViewWidget instead of GalleryAccess
+        // Navigate to HomeScreenPage instead of ListViewWidget
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const ListViewWidget()),
+          MaterialPageRoute(builder: (_) => const HomeScreenPage()),
         );
       }
     });

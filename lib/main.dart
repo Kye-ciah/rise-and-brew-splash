@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    _controller.addStatusListener((status) {
+    _controller.addStatusListener((status) { // goto homepage.dart
       if (status == AnimationStatus.completed && mounted) {
         // Navigate to ListViewWidget instead of GalleryAccess
         Navigator.pushReplacement(

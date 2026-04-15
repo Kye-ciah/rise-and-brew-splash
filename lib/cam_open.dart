@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'homescreen_page.dart';
+import 'loading_screen.dart';   // <-- import the new loading screen
 
 class CamOpen extends StatefulWidget {
   const CamOpen({super.key});
@@ -23,7 +24,6 @@ class _CamOpenState extends State<CamOpen> {
 
   Future<void> _initCamera() async {
     final status = await Permission.camera.request();
-    // Check mounted before using context
     if (!mounted) return;
     if (status != PermissionStatus.granted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -65,6 +65,7 @@ class _CamOpenState extends State<CamOpen> {
           IconButton(
             icon: const Icon(Icons.check),
             onPressed: () {
+              // Keep existing navigation or change as needed
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (_) => const HomeScreenPage()),
@@ -90,11 +91,14 @@ class _CamOpenState extends State<CamOpen> {
           if (_cameraController == null || !_cameraController!.value.isInitialized) return;
           try {
             final photo = await _cameraController!.takePicture();
-            // Check mounted before showing SnackBar
+            // After taking the photo, navigate to the loading screen
             if (!mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Photo saved at ${photo.path}')),
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => const LoadingScreen()),
             );
+            // Optionally, you can pass the photo path to the next screen:
+            // MaterialPageRoute(builder: (_) => LoadingScreen(photoPath: photo.path))
           } catch (e) {
             if (!mounted) return;
             ScaffoldMessenger.of(context).showSnackBar(

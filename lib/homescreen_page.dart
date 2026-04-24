@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'cam_open.dart';
 
 class HomeScreenPage extends StatefulWidget {
   const HomeScreenPage({super.key});
@@ -190,9 +191,17 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     final isActive = _selectedIndex == index;
     return GestureDetector(
       onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
+        if(index ==1){
+          Navigator.push( // Kapag Cam (index 1) ang pinindot, lilipat sa cam_open.dart
+            context,
+            MaterialPageRoute(builder: (context) => const CamOpen()),
+          );
+        }else{
+          setState(() {
+            _selectedIndex = index;
+          });
+        }
+
       },
       child: Container(
         width: 83.37,

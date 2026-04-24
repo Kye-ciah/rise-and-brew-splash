@@ -86,7 +86,7 @@ class _CamOpenState extends State<CamOpen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(// Camera button
         onPressed: () async {
           if (_cameraController == null || !_cameraController!.value.isInitialized) return;
           try {

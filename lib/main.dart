@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.addStatusListener((status) { // goto homepage.dart
       if (status == AnimationStatus.completed && mounted) {
-        // Navigate to ListViewWidget instead of GalleryAccess
+        // Navigate to HomeScreenPage instead of ListViewWidget
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => const HomeScreenPage()),
